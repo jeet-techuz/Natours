@@ -5,6 +5,8 @@ const Aunthcontroller = require('./../controllers/Aunthcontroller');
 
 router.post('/signup', Aunthcontroller.signup);
 router.post('/login', Aunthcontroller.login);
+router.post('/forgetPassword', Aunthcontroller.login);
+router.post('/restPassword', Aunthcontroller.login);
 
 router
   .route('/')

@@ -14,7 +14,7 @@ router
   .patch(tourcontroller.editTourById)
   .delete(
     Aunthcontroller.protect,
-    Aunthcontroller.restrictTo('admin'),
+    Aunthcontroller.restrictTo('admin', 'lead-guide'),
     tourcontroller.deleteTourById
   );
 

@@ -82,3 +82,24 @@ exports.protect = catchAsync(async (req, res, next) => {
   req.user = currentUser;
   next();
 });
+
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    //roles in array
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError('You Do Not Have Any Permision TO Delete The User!!!', 403)
+      );
+    }
+    next();
+  };
+};
+
+exports.forgetpassword = catchAsync(async (req, res, next) => {
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    return next(new AppError('No User with That User Id ', 404));
+  }
+});
+
+exports.resetpassword = (req, res, next) => {};
