@@ -100,6 +100,9 @@ exports.forgetpassword = catchAsync(async (req, res, next) => {
   if (!user) {
     return next(new AppError('No User with That User Id ', 404));
   }
+
+  const resetToken = user.createPasswordResetToken();
+  await user.save({ validateBeforeSave: false });
 });
 
 exports.resetpassword = (req, res, next) => {};
